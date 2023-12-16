@@ -1,0 +1,33 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{ title }}</h1>
+  <p>Welcome to {{ title }}</p>
+  <div>
+    <form action="/forms/create" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter username" required/>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required/>
+      
+      <label for="birthday">Birthday:</label>
+      <input type="date" id="birthday" name="birthday" required/>
+      
+      <input type="submit" value="Save" />
+    </form>
+    <h2>User List</h2>
+    <hr>
+    {% for user in users %}
+      <p><b>Username:</b> {{ user.username }}</p>
+      <p><b>Password:</b> {{ user.password }}</p>
+      <p><b>Birthday:</b> {{ user.birthday | date('Y-m-d') }}</p>
+      <!-- Add more attributes as needed -->
+      <a href="/forms/update/{{ user.id }}">Update</a>
+      <a href="/forms/delete/{{ user.id }}">Delete</a>
+      <hr>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+

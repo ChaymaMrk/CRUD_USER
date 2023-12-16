@@ -1,0 +1,24 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{ title }}</h1>
+  <p>Welcome to {{ title }}</p>
+  <div>
+    <form action="/forms/update/{{ user.id }}" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Update username" value="{{ user.username }}" required/>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Update password" value="{{ user.password }}" required/>
+      
+      <label for="birthday">Birthday:</label>
+      <input type="date" id="birthday" name="birthday" value="{{ user.birthday | date('Y-m-d') }}" required/>
+      <!-- Use 'Y-m-d' format instead of 'YYYY-MM-DD' -->
+      
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+{% endblock %}
+
+
+
